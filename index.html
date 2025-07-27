@@ -298,7 +298,7 @@
 		</div>
 	</section>
 	<!--contact section-->
-	<section class="ftco-section contact-section d-flex justify-content-center align-items-center" id="contact-section">
+		<section class="ftco-section contact-section d-flex justify-content-center align-items-center" id="contact-section">
 		<div class="container">
 			<div class="row justify-content-center mb-5 pb-3">
 				<div class="col-md-7 heading-section text-center ftco-animate">
@@ -311,33 +311,42 @@
 				<div class="col-md-6">
 
 					<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+					<div class="" style="background-color: rgb(219, 134, 8); border-radius: 18px;">
+						<form action='https://formsubmit.co/thinkpadlaptop12345678@gmail.com' method="post"
+							onsubmit="return validate()">
+							<div style="margin-left: 25%;">
 
-					<form id="contactForm" action="https://formsubmit.co/thinkpadlaptop12345678@gmail.com" method="post"
-						class="bg-light p-4 p-md-5 contact-form rounded shadow">
-						<div class="form-group mb-3">
-							<input type="text" id="name" class="form-control" placeholder="Your Name">
-							<small class="text-danger d-none">Name is required</small>
-						</div>
-						<div class="form-group mb-3">
-							<input type="email" id="email" class="form-control" placeholder="Your Email">
-							<small class="text-danger d-none">Valid email is required</small>
-						</div>
-						<div class="form-group mb-3">
-							<input type="text" id="subject" class="form-control" placeholder="Subject">
-							<small class="text-danger d-none">Subject is required</small>
-						</div>
-						<div class="form-group mb-3">
-							<textarea id="message" class="form-control" cols="30" rows="5"
-								placeholder="Message"></textarea>
-							<small class="text-danger d-none">Message cannot be empty</small>
-						</div>
-						<div class="form-group text-center mt-4">
-							<button type="submit" class="btn btn-warning px-4 py-2 text-dark fw-bold">SEND MESSAGE</button>
-						</div>
-					</form>
 
+								<br>
+								<input type="text" name="name" placeholder="Your Name" id="name">
+								<br>
+								<span id="name-error" style="color: rgb(180, 10, 10)"></span>
+
+								<br>
+								<input type="email" name="email" placeholder="Your Email" id="email">
+								<br>
+								<span id="email-error" style="color: rgb(180, 10, 10);"></span>
+
+								<br>
+								<input type="text" id="password" placeholder="Subject" name="Subject">
+								<br>
+								<span id="pass-error" style="color: rgb(180, 10, 10)"></span>
+
+								<br>
+								<textarea style="padding-left: 28px;" name="message" placeholder="Message"
+									id="message"></textarea>
+								<br>
+								<span id="message-error" style="color: rgb(180, 10, 10)"></span>
+							</div>
+							<br>
+							<input type="submit" class="btn px-4 py-2 text-dark font-weight-bold"
+								style="background-color: #ffff; color: #ff8000; border: 2px solid#ff8000; margin-left: 32%; margin-top: -10%;"
+								value="submit">
+				</form>
+	
 				</div>
 			</div>
+		</div>
 		</div>
 	</section>
 	<!--footer section-->
@@ -413,7 +422,46 @@
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
+	<script>
+		function validate() {
+			let valid = true;
+
+			document.getElementById("name-error").innerHTML = "";
+			document.getElementById("email-error").innerHTML = "";
+			document.getElementById("pass-error").innerHTML = "";
+			document.getElementById("message-error").innerHTML = "";
+
+
+			if (document.getElementById("name").value.trim() === "") {
+				document.getElementById("name-error").innerHTML = "Name is required";
+				valid = false;
+			} else if (/\d/.test(document.getElementById("name").value)) {
+				document.getElementById("name-error").innerHTML = "Number is not allowed";
+				valid = false;
+			}
+
+			if (document.getElementById("email").value.trim() === "") {
+				document.getElementById("email-error").innerHTML = "Email is required";
+				valid = false;
+			}
+
+			if (document.getElementById("password").value.trim() === "") {
+				document.getElementById("pass-error").innerHTML = "password is required";
+				valid = false;
+			}
+
+			if (document.getElementById("message").value.trim() === "") {
+				document.getElementById("message-error").innerHTML = "Message is required";
+				valid = false;
+			}
+
+			return valid;
+		}
+	</script>
+
+
+</body>
+<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.easing.1.3.js"></script>
 	<script src="js/jquery.waypoints.min.js"></script>
@@ -426,55 +474,7 @@
 
 	<script src="js/main.js"></script>
 
-	<script>
-		$(document).ready(function () {
-			$("#contactForm").submit(function (e) {
-				e.preventDefault();
-
-				let isValid = true;
-
-				// Name validation
-				if ($("#name").val().trim() === "") {
-					$("#name").next("small").removeClass("d-none");
-					isValid = false;
-				} else {
-					$("#name").next("small").addClass("d-none");
-				}
-
-				// Email validation
-				let email = $("#email").val().trim();
-				let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				if (email === "" || !emailPattern.test(email)) {
-					$("#email").next("small").removeClass("d-none");
-					isValid = false;
-				} else {
-					$("#email").next("small").addClass("d-none");
-				}
-
-				// Subject validation
-				if ($("#subject").val().trim() === "") {
-					$("#subject").next("small").removeClass("d-none");
-					isValid = false;
-				} else {
-					$("#subject").next("small").addClass("d-none");
-				}
-
-				// Message validation
-				if ($("#message").val().trim() === "") {
-					$("#message").next("small").removeClass("d-none");
-					isValid = false;
-				} else {
-					$("#message").next("small").addClass("d-none");
-				}
-
-				// Submit form if valid
-				if (isValid) {
-					alert("Form submitted successfully!");
-					this.submit(); // Remove this if submitting via AJAX
-				}
-			});
-		});
-	</script>
+	
 
 </body>
 
