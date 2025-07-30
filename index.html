@@ -433,25 +433,25 @@
 
 
 			if (document.getElementById("name").value.trim() === "") {
-				document.getElementById("name-error").innerHTML = "Name is required";
+				document.getElementById("name-error").innerHTML = "Enter a valid Name!";
 				valid = false;
 			} else if (/\d/.test(document.getElementById("name").value)) {
-				document.getElementById("name-error").innerHTML = "Number is not allowed";
+				document.getElementById("name-error").innerHTML = "Number is not allowed!";
 				valid = false;
 			}
 
 			if (document.getElementById("email").value.trim() === "") {
-				document.getElementById("email-error").innerHTML = "Email is required";
+				document.getElementById("email-error").innerHTML = "Enter a valid email!";
 				valid = false;
 			}
 
 			if (document.getElementById("password").value.trim() === "") {
-				document.getElementById("pass-error").innerHTML = "password is required";
+				document.getElementById("pass-error").innerHTML = "Enter a valid password!";
 				valid = false;
 			}
 
 			if (document.getElementById("message").value.trim() === "") {
-				document.getElementById("message-error").innerHTML = "Message is required";
+				document.getElementById("message-error").innerHTML = " Enter a valid Message!";
 				valid = false;
 			}
 
